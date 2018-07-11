@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+
+<head>
+        <meta charset="UTF-8" />
+
+        <title>SISPFeatureEngineering</title>
+
+    		<link href="/static/css/sticky-footer-navbar.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+
+    
+    </head>
+    <body>
+  <div class="container">
+            
+      <div class="row">
+              
+
+                <div class="col-lg-3">
+          </div>
+      <div class="col-lg-6">
+         <h2>PDF Data Retriever</h2>
+           <br>
+
+          
+          
+  <form action="/getfeatures" method="post">
+    <div class="form-group">
+        <label for="c">PDF File:</label>
+      <input  class="form-control" id="path" name="path" type="file">
+        <br>
+       <br>
+        <label for="text">Output File Name:</label>
+      <input  class="form-control" id="output" name="output" >
+         <br>
+    </div>
+<button type="submit" class="btn btn-default">Get XML</button>
+  </form>
+          
+  
+   </div> 
+
+          
+          
+      </div>
+</div>
+    </body>
+
+
+</html>
