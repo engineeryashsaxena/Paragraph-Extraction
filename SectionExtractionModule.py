@@ -115,14 +115,14 @@ def Split(listOfTuples):
                 #print sent
             else:
                 sent.append(listOfTuples[each][0])
-                sent=" ".join(sent)
+                sent=" ".join(map(str, sent))
                 font=listOfTuples[each][1]
                 size=listOfTuples[each][2]
                 sub[(key)]=(sent,font,size)
                 sent=[]
                 key=key+1
         sent.append(listOfTuples[each+1][0])
-        sent=" ".join(sent)
+        sent=" ".join(map(str, sent))
         font=listOfTuples[each+1][1]
         size=listOfTuples[each+1][2]
         sub[(key)]=(sent,font,size)
@@ -234,9 +234,9 @@ def GetCustomisedXML(inputfile):
             row=(each,every,subsection[0],subsection[1],subsection[2])
             l.append(row)
     df=pd.DataFrame(l,columns=['Section','SubSection','Content','FontName','FontSize'])
-    df['IsBold']=map(lambda x:ContainsBold(x),df['FontName'])
-    df['CapitalizeCount']=map(lambda x:CapitalizeCount(x),df['Content'])
-    df['NumberOfWords']=map(lambda x:NumberOfWords(x),df['Content'])
+    df['IsBold']=list(map(lambda x: ContainsBold(str(x)), df['FontName']))
+    df['CapitalizeCount']=list(map(lambda x: CapitalizeCount(str(x)), df['Content']))
+    df['NumberOfWords']=list(map(lambda x: NumberOfWords(str(x)), df['Content']))
     df['PercentageOfCapitalizeCount']=df['CapitalizeCount']*1.0/df['NumberOfWords']
     df['RatioToMaximumSizeInEntireDocument']=df['FontSize']/([MaximumFontSize(df)]*len(df))
     #return df
@@ -289,7 +289,7 @@ def GetOutput(inputFile,outputFile):
     t=[]
     for i,row in df.iterrows():
         tag=row['Tag']
-        content=row['Content']
+        content=str(row['Content'])
 
         if tag=="Title":
             t.append((title,con))
@@ -300,8 +300,8 @@ def GetOutput(inputFile,outputFile):
             con+=" "+content
     root = ET.Element("root")
     for each in t:
-        ET.SubElement(root, "title").text = each[0].decode('utf-8')
-        ET.SubElement(root, "para").text = each[1].decode('utf-8')
+        ET.SubElement(root, "title").text = each[0]
+        ET.SubElement(root, "para").text = each[1]
     tree = ET.ElementTree(root)
     tree.write(outputFile)
     print "Done"
